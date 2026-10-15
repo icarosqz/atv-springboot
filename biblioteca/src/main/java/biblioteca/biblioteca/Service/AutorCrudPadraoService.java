@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class AutorCrudPadraoService implements AutorCrudService {
     }
 
     @Override
+    @Transactional
     public void removerAutor(Long id) {
-        // delete(entidade) permite que o cascade da relação remova também os livros do autor
         autorRepository.delete(obterAutorExistente(id));
     }
 
